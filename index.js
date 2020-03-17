@@ -19,9 +19,15 @@ function parseRuby(text, start_pos) {
     return null;
   }
 
+  const body = text.slice(bodyStartBracket + 1, bodyEndBracket);
+  const toptext = text.slice(toptextStartBracket + 1, toptextEndBracket);
+  if (body.trim() === "" || toptext.trim() === "") {
+    return null;
+  }
+
   return {
-    body: text.slice(bodyStartBracket + 1, bodyEndBracket),
-    toptext: text.slice(toptextStartBracket + 1, toptextEndBracket),
+    body: body,
+    toptext: toptext,
     nextpos: toptextEndBracket + 1
   };
 }
