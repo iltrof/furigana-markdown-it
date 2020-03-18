@@ -92,6 +92,10 @@ describe("furigana", function() {
       md.renderInline("[cat]{ねこ}"),
       "<ruby>cat<rp>【</rp><rt>ねこ</rt><rp>】</rp></ruby>"
     );
+    assert.equal(
+      md.renderInline("[可愛い]{kawaii}"),
+      "<ruby>可愛い<rp>【</rp><rt>kawaii</rt><rp>】</rp></ruby>"
+    );
   });
 
   it("should accept a few other separators other than ASCII dot", function() {
@@ -107,6 +111,13 @@ describe("furigana", function() {
     assert.equal(
       md.renderInline("[可愛い犬]{か＋わい.い.いぬ}"),
       "<ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>"
+    );
+  });
+
+  it("should accept furigana in romaji, as long as body is kanji-only", function() {
+    assert.equal(
+      md.renderInline("[漢字]{kan.ji}"),
+      "<ruby>漢<rp>【</rp><rt>kan</rt><rp>】</rp>字<rp>【</rp><rt>ji</rt><rp>】</rp></ruby>"
     );
   });
 });
