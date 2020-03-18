@@ -120,6 +120,28 @@ describe("furigana", function() {
       "<ruby>漢<rp>【</rp><rt>kan</rt><rp>】</rp>字<rp>【</rp><rt>ji</rt><rp>】</rp></ruby>"
     );
   });
+
+  it("should disable pattern matching if toptext starts with an equals sign", function() {
+    assert.equal(
+      md.renderInline("[食べる]{=たべる}"),
+      "<ruby>食べる<rp>【</rp><rt>たべる</rt><rp>】</rp></ruby>"
+    );
+    assert.equal(
+      md.renderInline("[食べる]{＝たべる}"),
+      "<ruby>食べる<rp>【</rp><rt>たべる</rt><rp>】</rp></ruby>"
+    );
+  });
+
+  it("should NOT disable pattern matching if = appears not in the beginning", function() {
+    assert.equal(
+      md.renderInline("[猫だ]{ね=こだ}"),
+      "<ruby>猫<rp>【</rp><rt>ね=こ</rt><rp>】</rp>だ<rt></rt></ruby>"
+    );
+    assert.equal(
+      md.renderInline("[猫だ]{ね＝こだ}"),
+      "<ruby>猫<rp>【</rp><rt>ね＝こ</rt><rp>】</rp>だ<rt></rt></ruby>"
+    );
+  });
 });
 
 describe("emphasis dots", function() {
@@ -148,6 +170,17 @@ describe("emphasis dots", function() {
     assert.equal(
       md.renderInline("[猫is❤]{*}"),
       "<ruby>猫<rt>●</rt>i<rt>●</rt>s<rt>●</rt>❤<rt>●</rt></ruby>"
+    );
+  });
+
+  it("should NOT create emphasis dots if * appears not in the beginning", function() {
+    assert.equal(
+      md.renderInline("[猫だ]{ね*こだ}"),
+      "<ruby>猫<rp>【</rp><rt>ね*こ</rt><rp>】</rp>だ<rt></rt></ruby>"
+    );
+    assert.equal(
+      md.renderInline("[猫だ]{ね＊こだ}"),
+      "<ruby>猫<rp>【</rp><rt>ね＊こ</rt><rp>】</rp>だ<rt></rt></ruby>"
     );
   });
 });
