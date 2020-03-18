@@ -121,3 +121,33 @@ describe("furigana", function() {
     );
   });
 });
+
+describe("emphasis dots", function() {
+  it("should be applied with [body]{*}", function() {
+    assert.equal(
+      md.renderInline("[だから]{*}"),
+      "<ruby>だ<rt>●</rt>か<rt>●</rt>ら<rt>●</rt></ruby>"
+    );
+  });
+
+  it("should accept a full-width asterisk as well", function() {
+    assert.equal(
+      md.renderInline("[だから]{＊}"),
+      "<ruby>だ<rt>●</rt>か<rt>●</rt>ら<rt>●</rt></ruby>"
+    );
+  });
+
+  it("should accept custom markers", function() {
+    assert.equal(
+      md.renderInline("[だから]{*+}"),
+      "<ruby>だ<rt>+</rt>か<rt>+</rt>ら<rt>+</rt></ruby>"
+    );
+  });
+
+  it("should work on any character", function() {
+    assert.equal(
+      md.renderInline("[猫is❤]{*}"),
+      "<ruby>猫<rt>●</rt>i<rt>●</rt>s<rt>●</rt>❤<rt>●</rt></ruby>"
+    );
+  });
+});
