@@ -163,4 +163,30 @@ describe("options", function() {
       "<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>"
     );
   });
+
+  it("should allow adding extra separators", function() {
+    let md = require("markdown-it")().use(
+      require("../index")({ extraSeparators: "_-\\]" })
+    );
+
+    assert.equal(
+      md.renderInline("[犬犬犬犬犬犬犬]{いぬ.いぬ。いぬ_いぬ-いぬ\\いぬ]いぬ}"),
+      "<ruby>" + "犬<rp>【</rp><rt>いぬ</rt><rp>】</rp>".repeat(7) + "</ruby>"
+    );
+  });
+
+  it("should allow adding extra combinators", function() {
+    let md = require("markdown-it")().use(
+      require("../index")({ extraCombinators: "*" })
+    );
+
+    assert.equal(
+      md.renderInline("[可愛い犬]{か+わい.い.いぬ}"),
+      "<ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>"
+    );
+    assert.equal(
+      md.renderInline("[可愛い犬]{か*わい.い.いぬ}"),
+      "<ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>"
+    );
+  });
 });
