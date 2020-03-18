@@ -34,13 +34,6 @@ describe("ruby", function() {
     assert.equal(md.renderInline("[猫]{}"), "[猫]{}");
     assert.equal(md.renderInline("[猫]{ }"), "[猫]{ }");
   });
-
-  it("formats the body", function() {
-    assert.equal(
-      md.renderInline("[\\[*foo*\\]]{bar}"),
-      "<ruby>[<em>foo</em>]<rp>【</rp><rt>bar</rt><rp>】</rp></ruby>"
-    );
-  });
 });
 
 describe("furigana", function() {
