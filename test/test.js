@@ -93,4 +93,20 @@ describe("furigana", function() {
       "<ruby>cat<rp>【</rp><rt>ねこ</rt><rp>】</rp></ruby>"
     );
   });
+
+  it("should accept a few other separators other than ASCII dot", function() {
+    assert.equal(
+      md.renderInline(
+        "[犬犬犬犬犬犬犬犬犬犬犬]{いぬ.いぬ．いぬ。いぬ・いぬ|いぬ｜いぬ/いぬ／いぬ いぬ　いぬ}"
+      ),
+      "<ruby>" + "犬<rp>【</rp><rt>いぬ</rt><rp>】</rp>".repeat(11) + "</ruby>"
+    );
+  });
+
+  it("should accept full-width plus as combinator", function() {
+    assert.equal(
+      md.renderInline("[可愛い犬]{か＋わい.い.いぬ}"),
+      "<ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>"
+    );
+  });
 });
