@@ -142,6 +142,20 @@ describe("furigana", function() {
       "<ruby>猫<rp>【</rp><rt>ね＝こ</rt><rp>】</rp>だ<rt></rt></ruby>"
     );
   });
+
+  it("should pattern match katakana", function() {
+    assert.equal(
+      md.renderInline("[ダメな奴]{ダメなやつ}"),
+      "<ruby>ダメな<rt></rt>奴<rp>【</rp><rt>やつ</rt><rp>】</rp></ruby>"
+    );
+  });
+
+  it("should pattern match half-width katakana", function() {
+    assert.equal(
+      md.renderInline("[ﾀﾞﾒな奴]{ﾀﾞﾒなやつ}"),
+      "<ruby>ﾀﾞﾒな<rt></rt>奴<rp>【</rp><rt>やつ</rt><rp>】</rp></ruby>"
+    );
+  });
 });
 
 describe("emphasis dots", function() {
