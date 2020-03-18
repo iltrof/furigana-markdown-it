@@ -1,7 +1,7 @@
 "use strict";
 
 const assert = require("assert");
-const md = require("markdown-it")().use(require("../index"));
+const md = require("markdown-it")().use(require("../index")());
 
 describe("ruby", function() {
   it("should parse basic [body]{toptext}", function() {
@@ -148,6 +148,19 @@ describe("emphasis dots", function() {
     assert.equal(
       md.renderInline("[猫is❤]{*}"),
       "<ruby>猫<rt>●</rt>i<rt>●</rt>s<rt>●</rt>❤<rt>●</rt></ruby>"
+    );
+  });
+});
+
+describe("options", function() {
+  it("should allow custom fallback parentheses", function() {
+    let md = require("markdown-it")().use(
+      require("../index")({ fallbackParens: "()" })
+    );
+
+    assert.equal(
+      md.renderInline("[漢字]{かんじ}"),
+      "<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>"
     );
   });
 });
