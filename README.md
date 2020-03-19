@@ -1,4 +1,4 @@
-# markdown-it-furigana
+# furigana-markdown-it
 
 A [markdown-it](https://github.com/markdown-it/markdown-it) plugin which adds furigana support.
 
@@ -14,13 +14,13 @@ A [markdown-it](https://github.com/markdown-it/markdown-it) plugin which adds fu
 Install via npm:
 
 ```bash
-npm install markdown-it-furigana
+npm install furigana-markdown-it
 ```
 
 Use with markdown-it:
 
 ```js
-const furigana = require("markdown-it-furigana")();
+const furigana = require("furigana-markdown-it")();
 const md = require("markdown-it")().use(furigana);
 
 const html = md.render("[猫]{ねこ}");
@@ -30,7 +30,7 @@ const html = md.render("[猫]{ねこ}");
 Provide some options if you need (described below):
 
 ```js
-const furigana = require("markdown-it-furigana")({
+const furigana = require("furigana-markdown-it")({
   fallbackParens: "()",
   extraSeparators: "-",
   extraCombinators: "'"
@@ -184,7 +184,7 @@ Of couse, the full-width asterisk (＊) also works.
 Options can be provided during initialization of the plugin:
 
 ```js
-const furigana = require("markdown-it-furigana")({
+const furigana = require("furigana-markdown-it")({
   fallbackParens: "()",
   extraSeparators: "-",
   extraCombinators: "'"
