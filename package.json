@@ -16,7 +16,7 @@
     "furigana"
   ],
   "author": "iltrof",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "markdown-it": "^10.0.0",
