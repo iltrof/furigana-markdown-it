@@ -59,7 +59,7 @@ Works:
 
 Doesn't work 😞:
 
-- No formatting: `[**漢字**]{かんじ}` doesn't make 漢字 bold.
+- Formatting: `[**漢字**]{かんじ}` doesn't make 漢字 bold.
 - Matching katakana with hiragana: `[バカな奴]{ばかなやつ}` produces <ruby>バカな奴<rp>【</rp><rt>ばかなやつ</rt><rp>】</rp></ruby>.
 - Matching punctuation: `[「はい」と言った]{「はい」といった}` produces <ruby>「はい」と言った<rp>【</rp><rt>「はい」といった</rt><rp>】</rp></ruby>.
 
