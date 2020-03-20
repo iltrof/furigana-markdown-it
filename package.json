@@ -1,6 +1,6 @@
 {
   "name": "furigana-markdown-it",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Furigana extension for markdown-it.",
   "main": "index.js",
   "scripts": {
