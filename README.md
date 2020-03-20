@@ -1,6 +1,11 @@
 # furigana-markdown-it
 
-A [markdown-it](https://github.com/markdown-it/markdown-it) plugin which adds furigana support.
+A [markdown-it](https://github.com/markdown-it/markdown-it)
+plugin which adds furigana support.
+
+If you're reading this on npm, try
+[github](https://github.com/iltrof/furigana-markdown-it)
+instead: npm doesn't render `<ruby>` tags.
 
 ## TOC
 
@@ -42,26 +47,26 @@ const furigana = require("furigana-markdown-it")({
 
 Works:
 
-- `[漢字]{かんじ}` produces <ruby>漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby>.
-- `[漢字]{かんじ}` becomes 漢字【かんじ】 if `<ruby>` is unsupported.
-- `[漢字]{かん・じ}` produces <ruby>漢<rp>【</rp><rt>かん</rt><rp>】</rp>字<rp>【</rp><rt>じ</rt><rp>】</rp></ruby>.
-- `[漢字]{かん・じ}` becomes 漢【かん】字【じ】 if `<ruby>` is unsupported.
-- `[取り返す]{とりかえす}` produces <ruby>取<rp>【</rp><rt>と</rt><rp>】</rp>り<rt></rt>返<rp>【</rp><rt>かえ</rt><rp>】</rp>す<rt></rt></ruby>.
-- `[可愛い犬]{かわいいいぬ}` _incorrectly_ produces <ruby>可愛<rp>【</rp><rt>かわいい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>ぬ</rt><rp>】</rp></ruby>.
-- `[可愛い犬]{か・わい・いいぬ}` produces <ruby>可<rp>【</rp><rt>か</rt><rp>】</rp>愛<rp>【</rp><rt>わい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>.
-- `[可愛い犬]{か＋わい・いいぬ}` produces <ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>
-- `[食べる]{たべる}` produces <ruby>食<rp>【</rp><rt>た</rt><rp>】</rp>べる<rt></rt></ruby>.
-- `[食べる]{=たべる}` produces <ruby>食べる<rp>【</rp><rt>たべる</rt><rp>】</rp></ruby>.
-- `[アクセラレーター]{accelerator}` produces <ruby>アクセラレーター<rp>【</rp><rt>accelerator</rt><rp>】</rp></ruby>.
-- `[Iranmeylek]{天神的女兒}` produces <ruby>Iranmeylek<rp>【</rp><rt>天神的女兒</rt><rp>】</rp></ruby>.
-- Bonus: `[あいうえお]{*}` produces <ruby>あ<rt>●</rt>い<rt>●</rt>う<rt>●</rt>え<rt>●</rt>お<rt>●</rt></ruby>.
-- Bonus 2: `[あいうえお]{*+}` produces <ruby>あ<rt>+</rt>い<rt>+</rt>う<rt>+</rt>え<rt>+</rt>お<rt>+</rt></ruby>.
+| Input                                                                                                 | Result                                                                                                                                            | As image                                                                             |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `[漢字]{かんじ}`                                                                                      | <ruby>漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby><br> Or, if `<ruby>` is unsupported: <br> 漢字【かんじ】                                    | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/1.png)  |
+| `[漢字]{かん・じ}`<br> (allowed separator characters: ".．。・\|｜/／", as well as any kind of space) | <ruby>漢<rp>【</rp><rt>かん</rt><rp>】</rp>字<rp>【</rp><rt>じ</rt><rp>】</rp></ruby><br> Or, if `<ruby>` is unsupported: <br> 漢【かん】字【じ】 | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/2.png)  |
+| `[取り返す]{とりかえす}`                                                                              | <ruby>取<rp>【</rp><rt>と</rt><rp>】</rp>り<rt></rt>返<rp>【</rp><rt>かえ</rt><rp>】</rp>す<rt></rt></ruby>                                       | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/3.png)  |
+| `[可愛い犬]{かわいいいぬ}`                                                                            | <ruby>可愛<rp>【</rp><rt>かわいい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>ぬ</rt><rp>】</rp></ruby> (wrong match!)                             | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/4.png)  |
+| `[可愛い犬]{か・わい・いいぬ}`                                                                        | <ruby>可<rp>【</rp><rt>か</rt><rp>】</rp>愛<rp>【</rp><rt>わい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>             | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/5.png)  |
+| `[可愛い犬]{か＋わい・いいぬ}`                                                                        | <ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>                                            | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/6.png)  |
+| `[食べる]{たべる}`                                                                                    | <ruby>食<rp>【</rp><rt>た</rt><rp>】</rp>べる<rt></rt></ruby>                                                                                     | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/7.png)  |
+| `[食べる]{=たべる}`                                                                                   | <ruby>食べる<rp>【</rp><rt>たべる</rt><rp>】</rp></ruby>                                                                                          | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/8.png)  |
+| `[アクセラレータ]{accelerator}`                                                                       | <ruby>アクセラレータ<rp>【</rp><rt>accelerator</rt><rp>】</rp></ruby>                                                                             | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/9.png)  |
+| `[accelerator]{アクセラレータ}`                                                                       | <ruby>accelerator<rp>【</rp><rt>アクセラレータ</rt><rp>】</rp></ruby>                                                                             | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/10.png) |
+| `[あいうえお]{*}` (or `{＊}`)                                                                         | <ruby>あ<rt>●</rt>い<rt>●</rt>う<rt>●</rt>え<rt>●</rt>お<rt>●</rt></ruby>                                                                         | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/11.png) |
+| `[あいうえお]{*❤}` (or `{＊❤}`)                                                                       | <ruby>あ<rt>❤</rt>い<rt>❤</rt>う<rt>❤</rt>え<rt>❤</rt>お<rt>❤</rt></ruby>                                                                         | ![](https://raw.githubusercontent.com/iltrof/furigana-markdown-it/master/img/12.png) |
 
 Doesn't work 😞:
 
 - Formatting: `[**漢字**]{かんじ}` doesn't make 漢字 bold.
-- Matching katakana with hiragana: `[バカな奴]{ばかなやつ}` produces <ruby>バカな奴<rp>【</rp><rt>ばかなやつ</rt><rp>】</rp></ruby>.
-- Matching punctuation: `[「はい」と言った]{「はい」といった}` produces <ruby>「はい」と言った<rp>【</rp><rt>「はい」といった</rt><rp>】</rp></ruby>.
+- Matching katakana with hiragana: `[バカな奴]{ばかなやつ}` won't recognize that バカ and ばか are the same thing.
+- Matching punctuation (or any other symbols): `[「はい」と言った]{「はい」といった}` will break on the 「」 brackets.
 
 ## Not so quick usage
 
@@ -112,7 +117,7 @@ other characters for this purpose, specify them in the
 
 Nonetheless, `[可愛い犬]{か・わい・いいぬ}` leaves us with another
 problem. We were forced to separately annotate 可 with か,
-and 愛 with わい. Instead it would be preferrable to have 可愛
+and 愛 with わい. Instead it would be preferable to have 可愛
 as a single entity with the furigana かわい. However, the ・
 dot between か and わい is required to resolve the
 ambiguity.
@@ -173,7 +178,7 @@ Worry no more: `[あいうえお]{*}` will do just that:
 <ruby>あ<rt>●</rt>い<rt>●</rt>う<rt>●</rt>え<rt>●</rt>お<rt>●</rt></ruby>!
 
 And if you don't like the default look, provide a custom
-character (only one) after the asterisk, like this:
+character (or several) after the asterisk, like this:
 `[あいうえお]{*+}` (result:
 <ruby>あ<rt>+</rt>い<rt>+</rt>う<rt>+</rt>え<rt>+</rt>お<rt>+</rt></ruby>).
 
