@@ -156,6 +156,17 @@ describe("furigana", function() {
       "<ruby>ﾀﾞﾒな<rt></rt>奴<rp>【</rp><rt>やつ</rt><rp>】</rp></ruby>"
     );
   });
+
+  it("should abort if body only partially matches the furigana", function() {
+    assert.equal(
+      md.renderInline("[猫だ]{ねこだよ}"),
+      "<ruby>猫だ<rp>【</rp><rt>ねこだよ</rt><rp>】</rp></ruby>"
+    );
+    assert.equal(
+      md.renderInline("[は猫]{これはねこ}"),
+      "<ruby>は猫<rp>【</rp><rt>これはねこ</rt><rp>】</rp></ruby>"
+    );
+  });
 });
 
 describe("emphasis dots", function() {
