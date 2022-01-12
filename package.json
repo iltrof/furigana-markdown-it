@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "mocha": "^7.1.1"
   }
 }
