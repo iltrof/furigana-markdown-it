@@ -247,4 +247,32 @@ describe("options", function() {
       "<ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>"
     );
   });
+
+  describe("should allow adding lang", function() {
+    let md = require("markdown-it")().use(
+      require("../index")({ lang: "ja-JP" })
+    );
+
+    it("basic lang adding", function() {
+      assert.equal(
+        md.renderInline("[漢字]{かんじ}"),
+        '<ruby lang="ja-JP">漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby>'
+      );
+
+      assert.equal(
+        md.renderInline("Foo [漢字]{かんじ} bar."),
+        'Foo <ruby lang="ja-JP">漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby> bar.'
+      );
+
+      assert.equal(
+        md.renderInline("Foo [漢字]{かんじ} bar [猫]{ねこ} baz."),
+        'Foo <ruby lang="ja-JP">漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby> bar <ruby lang="ja-JP">猫<rp>【</rp><rt>ねこ</rt><rp>】</rp></ruby> baz.'
+      );
+    });
+
+    it("should allow empty toptext (render `span` instead)", function() {
+      assert.equal(md.renderInline("[猫]{}"), '<span lang="ja-JP">猫</span>');
+      assert.equal(md.renderInline("[猫]{ }"), '<span lang="ja-JP">猫</span>');
+    });
+  });
 });
