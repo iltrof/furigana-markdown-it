@@ -38,7 +38,8 @@ Provide some options if you need (described below):
 const furigana = require("furigana-markdown-it")({
   fallbackParens: "()",
   extraSeparators: "-",
-  extraCombinators: "'"
+  extraCombinators: "'",
+  lang: "ja-JP"
 });
 ...
 ```
@@ -192,7 +193,8 @@ Options can be provided during initialization of the plugin:
 const furigana = require("furigana-markdown-it")({
   fallbackParens: "()",
   extraSeparators: "-",
-  extraCombinators: "'"
+  extraCombinators: "'",
+  lang: "ja-JP"
 });
 ```
 
@@ -220,3 +222,13 @@ Supported options:
 
   Default combinators are + and ＋. If you need additional
   combinator characters, provide them with this option.
+
+- `lang`: [this attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang)
+  may help define a proper variant of the same unicode point,
+  that are merged due to [Han unification](https://en.wikipedia.org/wiki/Han_unification).
+
+  For example, <span lang="ja-JP">誤解</span> (ja-JP, Japanese), <span lang="zh-CN">誤解</span> (zh-CN, Chinese),
+  <span lang="ko-KR">誤解</span> (ko-KR, Korean) may all look differently.
+
+  By default, lang attribute is absent in `<ruby>` tags.
+  If you need force a certain locale (like "ja-JP" for Japanese), provide one with this option.
