@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Furigana extension for markdown-it.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha"
   },
