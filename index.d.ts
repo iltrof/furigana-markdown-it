@@ -39,6 +39,23 @@ declare namespace furigana {
          * If you need additional combinator characters, provide them with this option.
          */
         extraCombinators?: string | undefined;
+
+        /**
+         * The `lang` global attribute helps define the language of an element:
+         * The attribute contains a single "language tag" in the format defined in RFC 5646:
+         * Tags for Identifying Languages (also known as BCP 47).
+         *
+         * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
+         *
+         * `lang` attribute may help define a proper variant of the same unicode point,
+         * that are merged due to Han unification.
+         *
+         * @link https://en.wikipedia.org/wiki/Han_unification
+         *
+         * By default, lang attribute is absent in `<ruby>` tags.
+         * If you need force certain locales (like "ja-JP" for Japanese), provide one with this option.
+         */
+        lang?: string | undefined;
     }
 }
 
