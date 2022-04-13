@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Furigana extension for markdown-it.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha"
   },
@@ -19,7 +20,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "markdown-it": "^10.0.0",
-    "mocha": "^7.1.1"
+    "markdown-it": "^12.3.2",
+    "mocha": "^9.2.2"
   }
 }
