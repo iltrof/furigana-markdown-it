@@ -58,6 +58,25 @@ describe("furigana", function() {
     );
   });
 
+  it("should be able to split furigana with a dot for カヶ々〆 as well as full-width and normal numbers", function() {
+    assert.equal(
+      md.renderInline("[茅ヶ岳]{かや.が.たけ}"),
+      "<ruby>茅<rp>【</rp><rt>かや</rt><rp>】</rp>ヶ<rp>【</rp><rt>が</rt><rp>】</rp>岳<rp>【</rp><rt>たけ</rt><rp>】</rp></ruby>"
+    );
+
+    assert.equal(
+      md.renderInline("[4カ月]{よん.か.げつ}"),
+      "<ruby>4<rp>【</rp><rt>よん</rt><rp>】</rp>カ<rp>【</rp><rt>か</rt><rp>】</rp>月<rp>【</rp><rt>げつ</rt><rp>】</rp></ruby>"
+    );
+
+    assert.equal(
+      md.renderInline("[４カ月]{よん.か.げつ}"),
+      "<ruby>４<rp>【</rp><rt>よん</rt><rp>】</rp>カ<rp>【</rp><rt>か</rt><rp>】</rp>月<rp>【</rp><rt>げつ</rt><rp>】</rp></ruby>"
+    );
+
+    // TODO: add tests for 々〆
+  });
+
   it("should be able to use dots to resolve ambiguities", function() {
     assert.equal(
       md.renderInline("[可愛い犬]{か.わい.い.いぬ}"),
