@@ -58,6 +58,25 @@ describe("furigana", function() {
     );
   });
 
+  it("should be able to split furigana with a dot for カヶ々〆 as well as full-width and normal numbers", function() {
+    assert.equal(
+      md.renderInline("[茅ヶ岳]{かや.が.たけ}"),
+      "<ruby>茅<rp>【</rp><rt>かや</rt><rp>】</rp>ヶ<rp>【</rp><rt>が</rt><rp>】</rp>岳<rp>【</rp><rt>たけ</rt><rp>】</rp></ruby>"
+    );
+
+    assert.equal(
+      md.renderInline("[4カ月]{よん.か.げつ}"),
+      "<ruby>4<rp>【</rp><rt>よん</rt><rp>】</rp>カ<rp>【</rp><rt>か</rt><rp>】</rp>月<rp>【</rp><rt>げつ</rt><rp>】</rp></ruby>"
+    );
+
+    assert.equal(
+      md.renderInline("[４カ月]{よん.か.げつ}"),
+      "<ruby>４<rp>【</rp><rt>よん</rt><rp>】</rp>カ<rp>【</rp><rt>か</rt><rp>】</rp>月<rp>【</rp><rt>げつ</rt><rp>】</rp></ruby>"
+    );
+
+    // TODO: add tests for 々〆
+  });
+
   it("should be able to use dots to resolve ambiguities", function() {
     assert.equal(
       md.renderInline("[可愛い犬]{か.わい.い.いぬ}"),
@@ -246,5 +265,33 @@ describe("options", function() {
       md.renderInline("[可愛い犬]{か*わい.い.いぬ}"),
       "<ruby>可愛<rp>【</rp><rt>かわい</rt><rp>】</rp>い<rt></rt>犬<rp>【</rp><rt>いぬ</rt><rp>】</rp></ruby>"
     );
+  });
+
+  describe("should allow adding lang", function() {
+    let md = require("markdown-it")().use(
+      require("../index")({ lang: "ja-JP" })
+    );
+
+    it("basic lang adding", function() {
+      assert.equal(
+        md.renderInline("[漢字]{かんじ}"),
+        '<ruby lang="ja-JP">漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby>'
+      );
+
+      assert.equal(
+        md.renderInline("Foo [漢字]{かんじ} bar."),
+        'Foo <ruby lang="ja-JP">漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby> bar.'
+      );
+
+      assert.equal(
+        md.renderInline("Foo [漢字]{かんじ} bar [猫]{ねこ} baz."),
+        'Foo <ruby lang="ja-JP">漢字<rp>【</rp><rt>かんじ</rt><rp>】</rp></ruby> bar <ruby lang="ja-JP">猫<rp>【</rp><rt>ねこ</rt><rp>】</rp></ruby> baz.'
+      );
+    });
+
+    it("should allow empty toptext (render `span` instead)", function() {
+      assert.equal(md.renderInline("[猫]{}"), '<span lang="ja-JP">猫</span>');
+      assert.equal(md.renderInline("[猫]{ }"), '<span lang="ja-JP">猫</span>');
+    });
   });
 });
